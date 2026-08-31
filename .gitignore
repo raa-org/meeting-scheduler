@@ -1,0 +1,19 @@
+/vendor/
+/node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/.playwright/
+/tests/.auth/
+
+# Dev tooling — optional locally; not required to run the plugin
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+/phpstan.neon.dist
+/phpstan-baseline.neon
+/phpstan-bootstrap.php
+/phpcs.xml.dist
+/playwright.config.js
+/tests/

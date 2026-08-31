@@ -1,0 +1,47 @@
+:root {
+  --black: #0a0a0a;
+  --gray-900: #15171a;
+  --gray-700: #43474d;
+  --gray-600: #5c6166;
+  --gray-400: #81878f;
+  --gray-300: #939aa3;
+  --gray-200: #b3bcc7;
+  --gray-100: #cbd5e1;
+  --gray-50: #e9eef5;
+  --gray-25: #f2f6fa;
+
+  --booking-timezone-option-bg: #e9eef5;
+  --booking-timezone-text: #181a20;
+  --booking-timezone-option-border: color-mix(in srgb, var(--gray-200) 30%, transparent);
+
+  --yellow-200: #ffda44;
+  --yellow-500: #efa40f;
+  --blue-500: #0088ff;
+  --orange-500: #ff5718;
+  --red-300: #eb5e75;
+  --green-900: #0c3d24;
+  --green-800: #0e5c32;
+  --green-600: #089947;
+  --green-500: #00b84c;
+  --green-300: #4dd682;
+  --green-200: #77e5a2;
+  --green-100: #baf5d1;
+  --green-50: #ebf9f1;
+
+  --white-primary: #ffffff;
+
+  --fc-page-bg-color: var(--white-primary);
+  /* --fc-neutral-bg-color: var(--blue-gray-50);  */
+  --fc-border-color: var(--gray-100);
+
+  --fc-button-text-color: var(--gray-900);
+  --fc-button-bg-color: var(--white-primary);
+  --fc-button-border-color: var(--gray-100);
+  --fc-button-hover-bg-color: var(--gray-25);
+  --fc-button-hover-border-color: var(--gray-300);
+  --fc-button-active-bg-color: var(--gray-50);
+  --fc-button-active-border-color: var(--gray-300);
+  --fc-highlight-color: #f2fff8;
+  --fc-today-bg-color: var(--white-primary);
+  --fc-now-indicator-color: var(--green-500);
+}
