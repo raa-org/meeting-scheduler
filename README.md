@@ -1,11 +1,41 @@
 # Apexianlab — Meeting Scheduler
 
-WordPress plugin for scheduling meetings with Google Calendar integration,
-Google sign-in, and an optional AI booking assistant.
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759B?logo=wordpress&logoColor=white)](https://wordpress.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13%2B-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-**Live demo:** [apexianlab-calendar.rightandabove.com](https://apexianlab-calendar.rightandabove.com/)
+Self-hosted meeting scheduling for WordPress — Google Calendar, guest booking on your domain, and an optional AI assistant. Built by [Right&Above, LLC](https://rightandabove.com/).
 
-See the [white paper](docs/WHITEPAPER.md) for a one-page product overview.
+**[Live demo](https://apexianlab-calendar.rightandabove.com/)** · **[White paper](docs/WHITEPAPER.md)** · **[Security policy](SECURITY.md)**
+
+---
+
+## Screenshots
+
+### Public booking
+
+Guests pick a date and time against the organiser’s real Google Calendar availability.
+
+![Public booking calendar](docs/screenshots/02-booking.png)
+
+### Organiser sign-in
+
+Schedule owners connect with Google — the same OAuth grant powers Calendar access.
+
+![Google sign-in](docs/screenshots/01-sign-in.png)
+
+---
+
+## Highlights
+
+- **On your WordPress** — no Calendly-style SaaS for the booking UI
+- **Google Calendar** — FreeBusy availability, events + Meet links
+- **Google sign-in** — OAuth with PKCE for organisers
+- **Email flows** — confirm, cancel, reschedule (SMTP or Gmail API)
+- **Short links** — owner slug URLs for admin and public booking
+- **AI assistant (optional)** — chat to find slots, book, reschedule, cancel
+- **Any theme** — page templates and captcha ship inside the plugin
 
 ---
 

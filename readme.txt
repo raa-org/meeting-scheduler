@@ -57,9 +57,8 @@ No. Set `APEXIANLAB_LLM_BASE_URL` (and optional model / API key) only if you wan
 
 == Screenshots ==
 
-1. Schedule management for organisers
-2. Public booking flow
-3. Optional AI assistant
+1. Public booking — date/time against Google Calendar FreeBusy
+2. Organiser Google sign-in
 
 == Changelog ==
 
