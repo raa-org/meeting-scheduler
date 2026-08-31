@@ -3,6 +3,8 @@
 WordPress plugin for scheduling meetings with Google Calendar integration,
 Google sign-in, and an optional AI booking assistant.
 
+**Live demo:** [apexianlab-calendar.rightandabove.com](https://apexianlab-calendar.rightandabove.com/)
+
 See the [white paper](docs/WHITEPAPER.md) for a one-page product overview.
 
 ---
