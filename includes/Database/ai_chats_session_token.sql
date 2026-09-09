@@ -1,0 +1,1 @@
+ALTER TABLE ai_chats ADD COLUMN IF NOT EXISTS session_token_hash VARCHAR(64) NULL;

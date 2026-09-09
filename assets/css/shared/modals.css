@@ -1,0 +1,1524 @@
+/* Create Schedule modal — left-aligned window, light panel, close button */
+.create-schedule-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s;
+}
+
+.create-schedule-modal--centered {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.create-schedule-modal--centered .create-schedule-modal__box {
+  width: min(420px, calc(100vw - 32px));
+  min-width: 0;
+  max-width: 420px;
+  max-height: calc(100vh - 32px);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.create-schedule-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.create-schedule-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--overlay-black-35, rgba(10, 10, 10, 0.35));
+}
+
+.create-schedule-modal__box {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--white-primary);
+  box-shadow: var(--shadow-drawer);
+  display: flex;
+  flex-direction: column;
+  font-family: Inter;
+  font-style: Semi Bold;
+}
+
+.create-schedule-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+  flex-shrink: 0;
+}
+
+.create-schedule-modal__title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--black);
+  font-style: Semi Bold;
+  font-size: font-size/lg;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.create-schedule-modal__close {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--gray-600);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.create-schedule-modal__close:hover {
+  color: var(--black);
+  background: var(--gray-25);
+}
+
+.create-schedule-form {
+  padding: 24px;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: Inter;
+}
+
+/* Numbered-rail section grouping (csm--rail) ------------------ */
+.csm--rail .create-schedule-form {
+  gap: 0;
+}
+
+.section {
+  display: block;
+}
+
+.section + .section {
+  margin-top: 26px;
+}
+
+.csm--rail .section {
+  position: relative;
+  padding-left: 18px;
+}
+
+.csm--rail .section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #ececec;
+  border-radius: 2px;
+}
+
+.csm--rail .section__rail-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  margin-left: -2px;
+}
+
+.csm--rail .section__num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e9f9ee;
+  color: #1ec45a;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+}
+
+.csm--rail .section__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2329;
+  line-height: 1;
+}
+
+.csm--rail .section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.create-schedule-form fieldset {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.create-schedule-form label,
+.create-schedule-form input {
+  font-size: 14px;
+}
+
+/* Google Calendar connect block (schedule sidebar). */
+#google-calendar-connect {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+#google-calendar-connect-status {
+  color: var(--gray-600);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+#google-calendar-connect-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, filter 0.2s;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 130%;
+  background-color: var(--green-500);
+  color: var(--white-primary);
+}
+
+#google-calendar-connect-btn:hover {
+  background-color: #00a043;
+}
+
+
+.create-schedule-form__field {
+margin: 0;
+}
+
+.create-schedule-form__label {
+display: block;
+margin-bottom: 4px;
+font-weight: 500;
+font-size: 12px;
+line-height: 1.2;
+color: var(--gray-400);
+}
+
+.create-schedule-form__field label {
+display: block;
+margin-bottom: 4px;
+font-weight: 500;
+font-size: 12px;
+line-height: 1.2;
+color: var(--gray-400);
+}
+
+.create-schedule-form__field input[type="text"],
+.create-schedule-form__field input[type="number"],
+.create-schedule-form__field input[type="time"],
+.create-schedule-form__field input[type="email"],
+.create-schedule-form__field textarea {
+width: 100%;
+padding: 10px 0;
+border: none;
+border-bottom: 1px solid var(--gray-100);
+border-radius: 0;
+background: transparent;
+color: var(--black);
+font-size: 14px;
+
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+
+.create-schedule-form__field input[type="date"],
+.specific-date-row__date.create-schedule-form__input {
+width: 100%;
+padding: 10px 0;
+border: none;
+border-bottom: 1px solid var(--gray-100);
+border-radius: 0;
+background: transparent;
+color: var(--black);
+font-size: 14px;
+
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+
+.create-schedule-form__field input::placeholder,
+.create-schedule-form__field textarea::placeholder {
+color: var(--gray-400);
+}
+
+.create-schedule-form__field input[type="text"]:focus,
+.create-schedule-form__field input[type="number"]:focus,
+.create-schedule-form__field input[type="time"]:focus,
+.create-schedule-form__field input[type="email"]:focus,
+.create-schedule-form__field textarea:focus,
+.create-schedule-form__field select:focus {
+outline: none;
+border-bottom-color: var(--gray-700);
+}
+
+.create-schedule-form__field input[type="date"]:focus,
+.specific-date-row__date.create-schedule-form__input:focus {
+outline: none;
+border-bottom-color: var(--gray-700);
+}
+
+.create-schedule-form__field textarea {
+resize: vertical;
+min-height: 125px;
+padding-top: 4px;
+}
+
+.create-schedule-form__field--checkbox {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 4px;
+}
+
+.create-schedule-form__checkbox-label {
+display: inline-flex !important;
+align-items: center;
+gap: 8px;
+margin: 0 !important;
+cursor: pointer;
+color: var(--black);
+}
+
+.create-schedule-form__checkbox-note {
+margin: 0;
+color: var(--gray-600);
+font-size: 12px;
+line-height: 1.4;
+}
+
+.create-schedule-form__scope-warning {
+display: flex;
+flex-direction: column;
+gap: 6px;
+align-items: flex-start;
+margin-bottom: 16px;
+padding: 10px 16px;
+border-radius: 8px;
+background-color: rgb(from var(--red-700) r g b / 0.3);
+}
+
+.create-schedule-form__scope-warning[hidden] {
+display: none;
+}
+
+.create-schedule-form__scope-warning-text {
+margin: 0;
+color: var(--gray-900);
+font-size: 13px;
+font-weight: 500;
+line-height: 1.4;
+}
+
+.create-schedule-form__scope-warning .text-btn {
+padding: 0;
+border: none;
+background: none;
+font-size: 13px;
+font-weight: 600;
+color: var(--gray-900);
+text-decoration: underline;
+cursor: pointer;
+}
+
+.create-schedule-form__scope-warning .text-btn:hover {
+color: var(--gray-700);
+}
+
+.create-schedule-form__checkbox-input {
+appearance: none;
+width: 16px;
+height: 16px;
+margin: 0;
+border: 2px solid var(--gray-650);
+border-bottom: 2px solid var(--gray-650);
+border-radius: 4px;
+background: var(--white-primary);
+display: inline-flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+outline: none;
+box-shadow: none;
+transition: border-color 120ms, background-color 120ms;
+}
+
+.create-schedule-form__checkbox-input:hover,
+.create-schedule-form__checkbox-input:focus,
+.create-schedule-form__checkbox-input:focus-visible,
+.create-schedule-form__checkbox-input:active {
+outline: none;
+box-shadow: none;
+border-bottom-width: 2px;
+}
+
+.create-schedule-form__checkbox-input:checked {
+background: var(--green-500);
+border-color: var(--green-500);
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9' fill='none'%3E%3Cpath d='M1 4L4.5 7.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 12px 9px;
+}
+
+.create-schedule-form__field select {
+width: auto;
+min-width: 0;
+max-width: 100%;
+padding: 10px 24px 10px 0;
+border: none;
+border-bottom: 1px solid var(--gray-100);
+border-radius: 0;
+background: transparent;
+color: var(--black);
+font-size: 14px;
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+appearance: auto;
+cursor: pointer;
+}
+
+.create-schedule-form__section {
+margin: 0;
+padding: 0;
+border: none;
+}
+
+.create-schedule-form__section legend {
+margin-bottom: 12px;
+font-weight: 600;
+font-size: 14px;
+color: var(--black);
+margin-left: -2px;
+}
+
+.create-schedule-form__daily {
+display: flex;
+flex-direction: column;
+gap: 12px;
+--schedule-slot-col-min-width: 0px;
+}
+
+.create-schedule-form__day {
+display: grid;
+grid-template-columns: 40px minmax(0, 1fr) auto;
+align-items: center;
+gap: 8px;
+min-width: 0;
+}
+
+.create-schedule-form__day.is-unavailable .create-schedule-form__slots {
+display: none;
+}
+
+.create-schedule-form__unavailable-text {
+display: none;
+color: var(--gray-600);
+font-weight: 500;
+font-size: 14px;
+line-height: 130%;
+min-width: var(--schedule-slot-col-min-width);
+}
+
+.create-schedule-form__day.is-unavailable .create-schedule-form__unavailable-text {
+display: block;
+padding-left: 10px;
+}
+
+.create-schedule-form__day-label {
+color: var(--gray-400);
+font-weight: 500;
+font-size: 14px;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+
+.create-schedule-form__day-actions {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-end;
+gap: 8px;
+position: relative;
+}
+
+.create-schedule-form__day-action {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 4px;
+border: none;
+background: none;
+color: var(--gray-600);
+cursor: pointer;
+}
+
+.create-schedule-form__day-action:hover {
+color: var(--gray-800);
+}
+
+.create-schedule-form__day-action-icon {
+display: block;
+width: 14px;
+height: 14px;
+}
+
+.create-schedule-form__day-action-icon--circle-slash {
+color: var(--gray-600);
+}
+
+.create-schedule-form__day-action:hover .create-schedule-form__day-action-icon--circle-slash {
+color: var(--gray-800);
+}
+
+.create-schedule-form__slots {
+display: flex;
+flex-direction: column;
+gap: 6px;
+min-width: 0;
+}
+
+.create-schedule-form__slot {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: 6px;
+min-width: 0;
+}
+
+.create-schedule-form__slot .time-picker-gc {
+flex: 1 1 0;
+min-width: 0;
+}
+
+.create-schedule-form__slot .time-picker-gc__trigger {
+width: 100%;
+min-width: 0;
+}
+
+.create-schedule-form__slot-remove {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 4px;
+margin-left: 4px;
+border: none;
+background: none;
+color: var(--gray-600);
+cursor: pointer;
+}
+
+.create-schedule-form__slot-remove:hover {
+color: var(--gray-800);
+}
+
+.create-schedule-form__slot-remove .create-schedule-form__day-action-icon--circle-slash {
+color: inherit;
+}
+
+.time-picker-gc {
+position: relative;
+}
+
+.time-picker-gc__trigger {
+position: relative;
+display: inline-block;
+min-width: 60px;
+padding: 6px 8px;
+border: none;
+background: transparent;
+font-size: 14px;
+color: var(--gray-700);
+cursor: pointer;
+appearance: none;
+text-align: center;
+white-space: nowrap;
+
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+
+.time-picker-gc__trigger:hover {
+background: var(--overlay-black-04);
+}
+
+.time-picker-gc__trigger::after {
+content: "";
+position: absolute;
+right: 0;
+top: 50%;
+transform: translateY(-50%);
+width: 0;
+height: 0;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+border-top: 5px solid var(--gray-500);
+}
+
+.time-picker-gc__dropdown {
+display: none;
+position: absolute;
+left: 0;
+top: 100%;
+z-index: 10;
+margin-top: 2px;
+max-height: 200px;
+min-width: 100%;
+overflow-y: auto;
+background: var(--white-primary);
+border: 1px solid var(--gray-100);
+border-radius: 6px;
+box-shadow: var(--shadow-sm);
+}
+
+.time-picker-gc__dropdown.is-open {
+display: block;
+}
+
+.time-picker-gc__option {
+display: block;
+width: 100%;
+padding: 8px 12px;
+border: none;
+background: none;
+font-size: 14px;
+color: var(--gray-700);
+text-align: left;
+cursor: pointer;
+white-space: nowrap;
+}
+
+.time-picker-gc__option:hover {
+background: var(--overlay-black-06);
+}
+
+.time-picker-gc__type {
+display: block;
+width: 100%;
+margin: 0;
+padding: 8px 12px;
+border: none;
+border-bottom: 1px solid var(--gray-100);
+background: var(--white-primary);
+font-size: 14px;
+color: var(--gray-900);
+outline: none;
+box-sizing: border-box;
+position: sticky;
+top: 0;
+z-index: 1;
+}
+
+.time-picker-gc__type::placeholder {
+font-size: 14px;
+color: var(--gray-400);
+}
+
+.time-picker-gc__type:focus {
+border-bottom-color: var(--green-500);
+}
+
+.create-schedule-form__slot span {
+color: var(--gray-400);
+font-size: 13px;
+}
+
+
+.create-schedule-form__row {
+display: grid;
+grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+gap: 16px;
+margin: 0;
+min-width: 0;
+}
+
+.create-schedule-form__row > .create-schedule-form__field {
+min-width: 0;
+}
+
+.create-schedule-form__row--repeat-timezone,
+.create-schedule-form__row--name-format {
+  grid-template-columns: 1fr;
+}
+
+.create-schedule-form__row .create-schedule-form__field:only-child {
+  grid-column: 1 / -1;
+}
+
+.create-schedule-form__lead {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.create-schedule-form__lead input {
+  width: 64px;
+  flex: 0 0 64px;
+  min-width: 0;
+}
+
+.create-schedule-form__lead select {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+
+.create-schedule-form__row:has(> .create-schedule-form__field--lead) .create-schedule-form__lead input,
+.create-schedule-form__row:has(> .create-schedule-form__field--lead) .create-schedule-form__lead select,
+.create-schedule-form__row:has(> .create-schedule-form__field--lead) > .create-schedule-form__field > select {
+  height: 40px;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.create-schedule-form__row:has(> .create-schedule-form__field--lead) .create-schedule-form__lead input {
+  line-height: 40px;
+}
+
+.create-schedule-form__submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--green-500);
+  color: var(--white-primary);
+  cursor: pointer;
+  transition: background 0.2s, filter 0.2s;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.create-schedule-form__submit:hover {
+  filter: brightness(1.08);
+}
+
+#create-schedule-form #specific-date-add {
+  width: auto;
+  margin-top: 0;
+  padding: 7px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--black);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#create-schedule-form #specific-date-add:hover {
+  background: var(--gray-25);
+  border-color: var(--gray-300);
+}
+
+.calendar-means-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-means-row select {
+  flex: 0 1 auto;
+  min-width: 140px;
+  width: auto;
+  max-width: 100%;
+}
+
+.create-schedule-form__availability-desc {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--gray-400);
+}
+
+#schedule-availability-select[aria-hidden="true"] {
+  display: none;
+}
+
+.avail-picker {
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 140px;
+  max-width: 100%;
+}
+
+.avail-picker__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 24px 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--gray-100);
+  border-radius: 0;
+  background: transparent;
+  color: var(--black);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.avail-picker__trigger:focus {
+  outline: none;
+  border-bottom-color: var(--gray-700);
+}
+
+.avail-picker__value {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avail-picker__arrow {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gray-500, #9aa0a6);
+  pointer-events: none;
+}
+
+.avail-picker__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  z-index: 50;
+  margin-top: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.avail-picker__option {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-800, #181a20);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.avail-picker__option:hover {
+  background: var(--gray-20, #f4f6f7);
+}
+
+.avail-picker__option.is-selected {
+  background: rgba(0, 184, 76, 0.08);
+  color: var(--green-600, #00a043);
+  font-weight: 600;
+}
+
+/* The reminder-unit picker shares its row with a 64px number input — let it flex
+   instead of forcing the shared 140px min-width. */
+.create-schedule-form__lead .avail-picker {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Reminder + color row: match the native select's 40px height that this row used
+   to set on <select> directly, now that the trigger button replaces it. */
+.create-schedule-form__row:has(> .create-schedule-form__field--lead) .avail-picker__trigger {
+  height: 40px;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.create-schedule-form__field--availability {
+  margin: 0;
+}
+
+.create-schedule-modal__box--narrow {
+  max-width: 400px;
+  padding: 8px 12px 20px;
+}
+
+.create-schedule-modal__box--narrow .create-schedule-modal__title {
+  flex: 1;
+  text-align: center;
+}
+
+.custom-availability-form {
+  padding: 20px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.custom-availability-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-availability-form__row--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-availability-form__static {
+  font-size: 14px;
+  color: var(--gray-700);
+}
+
+.custom-availability-form__label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--gray-400);
+}
+
+.custom-availability-form__label--block {
+  margin-bottom: 8px;
+}
+
+.custom-availability-form__input {
+  width: 180px;
+  max-width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--gray-100);
+  border-radius: 0;
+  background: transparent;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.custom-availability-form__input:focus {
+  outline: none;
+  border-bottom-color: var(--gray-700);
+}
+
+/* Date fields rendered as Google-style "May 29, 2026": the native input keeps
+   the value + picker, but its text/icon are hidden and a formatted overlay is
+   shown on top. */
+.custom-date {
+  position: relative;
+  width: 180px;
+  max-width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+}
+
+.custom-date:focus-within {
+  border-bottom-color: var(--gray-700);
+}
+
+/* Visible formatted text, e.g. "May 29, 2026". */
+.custom-date__display {
+  min-height: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  color: var(--black);
+}
+
+/* Native input kept for the value + picker, but fully transparent and overlaid
+   so its MM/DD/YYYY text, focused-segment highlight and icon never show. */
+.custom-date__native.custom-availability-form__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* While editing (typing or picker open) reveal the native MM/DD/YYYY segments so
+   the user sees what they type; the formatted overlay hides until blur. */
+.custom-date:focus-within .custom-date__native.custom-availability-form__input {
+  opacity: 1;
+  cursor: text;
+}
+
+.custom-date:focus-within .custom-date__display {
+  opacity: 0;
+}
+
+.custom-date__native:disabled {
+  cursor: default;
+}
+
+.custom-date__native:disabled ~ .custom-date__display {
+  opacity: 0.55;
+}
+
+/* Invalid (e.g. end before start): red background, text colour unchanged — like Google. */
+.custom-date--invalid {
+  background: #fce8e6;
+}
+
+#custom-availability-done:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.custom-availability-form__row--inline.is-muted {
+  opacity: 0.55;
+}
+
+.custom-availability-form__interval {
+  width: 64px;
+  text-align: center;
+}
+
+.custom-availability-form__ends {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-availability-form__radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+.custom-availability-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.custom-availability-form__actions .text-btn {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-650);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.custom-availability-form__actions .text-btn:hover {
+  color: var(--gray-800);
+}
+
+.availability-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.availability-panel.is-hidden {
+  display: none !important;
+}
+
+.custom-interval-row {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600, #5c6166);
+  margin-bottom: 4px;
+}
+
+.custom-interval-row strong {
+  color: var(--gray-800, #181a20);
+}
+
+.custom-availability-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--gray-100, #e0e3e7);
+  border-radius: 10px;
+  background: var(--gray-10, #f8fafc);
+}
+
+.custom-availability-summary__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.custom-availability-summary__label {
+  color: var(--gray-600, #5c6166);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.custom-availability-summary__row strong {
+  color: var(--gray-800, #181a20);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.specific-dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.specific-date-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px 3px;
+  min-width: 0;
+}
+
+.specific-date-row > .create-schedule-form__error {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.specific-date-row .specific-date-row__date.create-schedule-form__input {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 7rem;
+  padding: 5px 4px 5px 5px;
+}
+
+@-moz-document url-prefix() {
+  .specific-date-row .specific-date-row__date.create-schedule-form__input {
+    max-width: 8rem;
+  }
+}
+
+.specific-date-row__times {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.specific-date-row__times .time-picker-gc {
+  flex: 0 0 auto;
+}
+
+/* Hug content so the dash sits evenly between the two times. Extra right
+   padding gives the dropdown caret (::after, pinned right:0) clearance from
+   the time text. */
+.specific-date-row__times .time-picker-gc__trigger {
+  min-width: 0;
+  padding: 6px 12px 6px 8px;
+  text-align: center;
+}
+
+.specific-date-row__dash {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  color: var(--gray-600);
+  font-size: 14px;
+  text-align: center;
+}
+
+.specific-date-row__remove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--gray-600);
+}
+
+.specific-date-row__remove svg {
+  width: 20px;
+  height: 20px;
+}
+
+.specific-date-row__remove:hover {
+  background: var(--gray-20);
+}
+
+.specific-date-row__remove:disabled,
+.specific-date-row__remove.is-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Additional recipients list */
+.recipients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 8px;
+}
+
+/* Grid keeps the input and minus on one row deterministically; the error spans
+   both columns on its own line below (flex-wrap was unreliable here). */
+.recipient-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 6px;
+  min-width: 0;
+}
+
+.recipient-row > .create-schedule-form__error {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.recipient-row__email.create-schedule-form__input {
+  min-width: 0;
+  width: 100%;
+}
+
+.recipient-row__email.recipient-row__email--invalid {
+  border-bottom-color: #e53935 !important;
+}
+
+.recipient-row__remove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--gray-600);
+}
+
+.recipient-row__remove svg {
+  width: 20px;
+  height: 20px;
+}
+
+.recipient-row__remove:hover {
+  background: var(--gray-20);
+}
+
+/* The first row is the baseline field — hide its minus while empty (nothing to
+   remove yet). Every added row keeps its minus so it can always be removed,
+   even before it is filled. visibility keeps the input width steady. */
+.recipient-row:first-child:has(.recipient-row__email:placeholder-shown) .recipient-row__remove {
+  visibility: hidden;
+}
+
+#create-schedule-form #schedule-recipient-add {
+  width: 100%;
+  margin: 16px 0;
+  padding: 7px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--black);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#create-schedule-form #schedule-recipient-add:hover {
+  background: var(--gray-25);
+  border-color: var(--gray-300);
+}
+
+.create-schedule-form__hint {
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--gray-300);
+}
+
+.create-schedule-form__field--durations .durations-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+  min-height: 28px;
+}
+
+.durations-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 16px;
+  background: var(--gray-20, #f4f6f7);
+  border: 1px solid var(--gray-100, #e0e3e7);
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--gray-800, #181a20);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.durations-chip:hover {
+  border-color: var(--green-500, #00B84C);
+}
+
+.durations-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 184, 76, 0.18);
+}
+
+.durations-chip.is-selected {
+  background: var(--green-500, #00B84C);
+  border-color: var(--green-500, #00B84C);
+  color: #fff;
+}
+
+.durations-chip.is-selected:hover {
+  background: var(--green-600, #00a043);
+  border-color: var(--green-600, #00a043);
+}
+
+.create-schedule-form__field--durations .durations-chips:empty {
+  display: none;
+}
+
+#schedule-availability-custom-edit {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--green-500, #00B84C);
+  border-radius: 8px;
+  background: var(--green-500, #00B84C);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+}
+
+#schedule-availability-custom-edit:hover {
+  background: var(--green-600, #00a043);
+  border-color: var(--green-600, #00a043);
+}
+
+#schedule-availability-custom-edit:active {
+  transform: translateY(1px);
+}
+
+.create-schedule-form__error {
+  flex-basis: 100%;
+  width: 100%;
+  display: block;
+  margin: 6px 0 0;
+  padding: 0;
+  color: #e53935;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.create-schedule-form__slot > .create-schedule-form__error{
+  padding-left: 15px;
+}
+.specific-date-row > .create-schedule-form__error {
+  padding-left: 20px;
+}
+
+.create-schedule-form__field--invalid > input,
+.create-schedule-form__field--invalid > select,
+.create-schedule-form__field--invalid .ant-select-selector {
+  border-color: #e53935 !important;
+}
+
+.specific-date-row.create-schedule-form__field--invalid > .specific-date-row__date {
+  border-color: var(--gray-100) !important;
+}
+
+.specific-date-row.create-schedule-form__field--invalid .time-picker-gc__trigger {
+  border-bottom: 1px solid #e53935 !important;
+  border-radius: 0;
+}
+
+.tz-picker {
+  position: relative;
+  width: 100%;
+}
+
+.tz-picker__input {
+  width: 100%;
+  padding: 10px 30px 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--gray-100);
+  border-radius: 0;
+  background: transparent;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.tz-picker__input:focus {
+  outline: none;
+  border-bottom-color: var(--gray-700);
+  cursor: text;
+}
+
+.tz-picker__arrow {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gray-500, #9aa0a6);
+  pointer-events: none;
+}
+
+.tz-picker__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin-top: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.tz-picker__option {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-800, #181a20);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tz-picker__option:hover {
+  background: var(--gray-20, #f4f6f7);
+}
+
+.tz-picker__option.is-selected {
+  background: rgba(0, 184, 76, 0.08);
+  color: var(--green-600, #00a043);
+  font-weight: 600;
+}
+
+.tz-picker__empty {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--gray-500, #9aa0a6);
+}
+
+#schedule-timezone[aria-hidden="true"] {
+  display: none;
+}
+
+

@@ -1,0 +1,92 @@
+:root {
+  /* Base palette */
+  --black: #0a0a0a;
+  --white-primary: #ffffff;
+
+  /* Grayscale */
+  --gray-900: #15171a;
+  --gray-800: #2f3338;
+  --gray-700: #43474d;
+  --gray-650: #5f6368;
+  --gray-600: #5c6166;
+  --gray-400: #81878f;
+  --gray-300: #939aa3;
+  --gray-250: #e0e0e0;
+  --gray-200: #c9cdd2;
+  --gray-100: #cbd5e1;
+  --gray-50: #e9eef5;
+  --gray-25: #f2f6fa;
+  --gray-20: #f5f5f5;
+  --gray-10: #f7f8fa;
+
+  /* Text */
+  --text-primary: #0a0a0a;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+
+  /* Brand / semantic colors */
+  --yellow-500: #efa40f;
+  --blue-500: #0088ff;
+  --blue-550: #1a73e8;
+  --orange-500: #ff5718;
+  --green-500: #00b84c;
+  --green-700: #0b6b33;
+
+  --red-500: #e74c3c;
+  --red-700: #b6372b;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.18);
+  --shadow-drawer: 4px 0 24px rgba(0, 0, 0, 0.08);
+  --shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Overlays */
+  --overlay-black-35: rgba(10, 10, 10, 0.35);
+  --overlay-black-12: rgba(0, 0, 0, 0.12);
+  --overlay-black-08: rgba(0, 0, 0, 0.08);
+  --overlay-black-06: rgba(0, 0, 0, 0.06);
+  --overlay-black-04: rgba(0, 0, 0, 0.04);
+  --overlay-gray-12: rgba(60, 64, 67, 0.12);
+  --overlay-gray-06: rgba(21, 23, 26, 0.06);
+  --overlay-gray-12-strong: rgba(21, 23, 26, 0.12);
+  --overlay-red-12: rgba(231, 76, 60, 0.12);
+  --overlay-green-12: rgba(0, 184, 76, 0.12);
+
+  /* Schedule filter colors */
+  --checkbox-blue-bg: #cce9ff;
+  --checkbox-blue-border: #66bdff;
+  --checkbox-green-bg: #baf5d1;
+  --checkbox-green-border: #4dd682;
+  --checkbox-cyan-bg: #c2f7ff;
+  --checkbox-cyan-border: #5ae5fa;
+  --checkbox-pink-bg: #ffd6f8;
+  --checkbox-pink-border: #fa78e4;
+  --checkbox-yellow-bg: #fff1d6;
+  --checkbox-yellow-border: #ffc95c;
+  --checkbox-red-bg: #fac8d0;
+  --checkbox-red-border: #eb5e75;
+  --checkbox-orange-bg: #ffd3c2;
+  --checkbox-orange-border: #ff936a;
+  --checkbox-violet-bg: #e8e0ff;
+  --checkbox-violet-border: #a891f2;
+
+  --green-primary: var(--green-500);
+  --gray-500: var(--gray-600);
+
+  /* FullCalendar */
+  --fc-page-bg-color: var(--white-primary);
+  --fc-border-color: var(--gray-100);
+
+  --fc-button-text-color: var(--gray-900);
+  --fc-button-bg-color: var(--white-primary);
+  --fc-button-border-color: var(--gray-100);
+  --fc-button-hover-bg-color: var(--gray-25);
+  --fc-button-hover-border-color: var(--gray-300);
+  --fc-button-active-bg-color: var(--gray-50);
+  --fc-button-active-border-color: var(--gray-300);
+  --fc-highlight-color: #f2fff8;
+  --fc-today-bg-color: var(--white-primary);
+  --fc-now-indicator-color: var(--green-500);
+}

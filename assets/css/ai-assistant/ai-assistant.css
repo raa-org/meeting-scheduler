@@ -1,0 +1,640 @@
+/* AI Assistant — viewport-locked layout */
+
+html:has(body.apexianlab-ai-assistant-full) {
+  height: 100%;
+  background: var(--white-primary);
+}
+
+body.apexianlab-ai-assistant-full {
+  margin: 0;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--white-primary);
+}
+
+body.apexianlab-ai-assistant-full .header {
+  position: relative !important;
+  top: auto !important;
+  width: 100%;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+body.apexianlab-ai-assistant-full main.booking {
+  flex: 1;
+  min-height: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--white-primary);
+}
+
+body.apexianlab-ai-assistant-full .copyright {
+  flex-shrink: 0;
+  position: static !important;
+  display: block;
+  width: 100%;
+  padding: 6px 16px calc(6px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  font-size: 11px;
+  color: var(--gray-400);
+  text-align: left;
+}
+
+.booking > .ai-assistant {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.ai-assistant__shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 676px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.ai-assistant__context {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 12px 14px;
+  background: var(--white-primary);
+}
+
+.ai-assistant__context-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ai-assistant__context-back {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  margin: -6px 0 -6px -6px;
+  border-radius: 10px;
+  line-height: 0;
+  color: var(--gray-700);
+  text-decoration: none;
+}
+
+.ai-assistant__context-back img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+h1.ai-assistant__context-title {
+  flex: 0 1 auto;
+  margin: 0;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--booking-timezone-text);
+  text-align: left;
+}
+
+.ai-assistant__messages {
+  flex: 1;
+  display: block;
+  padding: 16px 18px 14px;
+}
+
+.ai-assistant__dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: var(--white-primary);
+  padding-bottom: 8px;
+}
+
+.ai-assistant__shell:has(.ai-assistant__context) .ai-assistant__messages {
+  padding-top: 12px;
+}
+
+.ai-assistant__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ai-assistant__avatar {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ai-assistant__avatar img {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.ai-assistant__bubble {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px 12px;
+  border: 1px solid rgba(24, 26, 32, 0.12);
+  border-radius: 14px;
+}
+
+.ai-assistant__row:not(.ai-assistant__row--user) .ai-assistant__bubble {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0 0 0 4px;
+}
+
+.ai-assistant__row:not(.ai-assistant__row--user) .ai-assistant__bubble-time {
+  text-align: left;
+  padding-left: 0;
+}
+
+.ai-assistant__bubble-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--booking-timezone-text);
+}
+
+.ai-assistant__bubble-time {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  /* line-height: 1.2; */
+  color: rgba(24, 26, 32, 0.45);
+  text-align: right;
+}
+
+.ai-assistant__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  flex-shrink: 0;
+  margin-left: 18px;
+  margin-right: 18px;
+  padding: 16px 0 0;
+  border-top: 1px solid rgba(24, 26, 32, 0.08);
+}
+
+.ai-assistant__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 10px 12px;
+  min-height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 26, 32, 0.18);
+  background: var(--white-primary);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.ai-assistant__chip:hover {
+  color: var(--booking-timezone-text);
+  border-color: color-mix(in srgb, var(--green-500) 40%, transparent);
+}
+
+.ai-assistant__chip:focus-visible {
+  outline: 2px solid var(--green-500);
+  outline-offset: 2px;
+}
+
+.ai-assistant__chip--danger:hover {
+  border-color: rgba(229, 57, 53, 0.45);
+}
+
+.ai-assistant__chip--disabled,
+.ai-assistant__chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ai-assistant__chip-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.ai-assistant__chip-icon svg {
+  display: block;
+}
+
+.ai-assistant__composer {
+  flex-shrink: 0;
+  padding: 14px 18px;
+  padding-bottom: max(18px, calc(14px + env(safe-area-inset-bottom, 0px)));
+}
+
+.ai-assistant__back-wrap {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.ai-assistant__back {
+  color: rgba(24, 26, 32, 0.55);
+  text-decoration: none;
+}
+
+.ai-assistant__back:hover {
+  color: var(--booking-timezone-text);
+  text-decoration: underline;
+}
+
+.ai-assistant__field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 10px 8px 10px 18px;
+  border: 1px solid rgba(24, 26, 32, 0.16);
+  border-radius: 16px;
+  background: var(--white-primary);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.ai-assistant__field > .screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ai-assistant__field:focus-within {
+  border-color: var(--green-500);
+}
+
+.ai-assistant__field-stack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.ai-assistant__field-stack--multiline {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.ai-assistant__field-text {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+}
+
+.ai-assistant__field-stack--multiline .ai-assistant__field-text {
+  flex: 0 1 auto;
+  width: 100%;
+}
+
+.ai-assistant__field-text .ai-assistant__input {
+  display: block;
+  width: 100%;
+}
+
+.ai-assistant__field-controls {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.ai-assistant__input {
+  box-sizing: border-box;
+  min-height: calc(1.4em + 12px);
+  max-height: calc(4 * 1.4em + 12px);
+  border: 0;
+  margin: 0;
+  padding: 6px 4px 6px 0;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--booking-timezone-text);
+  background: transparent;
+  outline: none;
+  resize: none;
+  overflow-y: hidden;
+}
+
+.ai-assistant__input::placeholder {
+  color: rgba(24, 26, 32, 0.4);
+}
+
+.ai-assistant__mic {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ai-assistant__mic:hover {
+  color: var(--booking-timezone-text);
+  background: rgba(24, 26, 32, 0.06);
+}
+
+.ai-assistant__mic--recording {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.ai-assistant__mic--recording img {
+  /* Red filter so the icon reads as "active" when recording. Same hue
+     as the recording widget's dot for visual consistency. */
+  filter: brightness(0) saturate(100%) invert(28%) sepia(96%) saturate(4000%) hue-rotate(345deg) brightness(95%) contrast(95%);
+}
+
+.ai-assistant__mic--transcribing {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ── Voice recording widget ───────────────────────────────────────
+   The widget slides over the textarea while the mic is recording.
+   It shows a cancel button, a live waveform and an elapsed timer.
+   Toggle it by flipping `data-ai-recording` on `.ai-assistant__field`.
+*/
+.ai-assistant__record {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px;
+}
+
+.ai-assistant__field[data-ai-recording="true"] .ai-assistant__field-text {
+  display: none;
+}
+
+.ai-assistant__field[data-ai-recording="true"] .ai-assistant__record {
+  display: flex;
+}
+
+.ai-assistant__field[data-ai-recording="true"] .ai-assistant__send {
+  display: none;
+}
+
+.ai-assistant__record-cancel {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(24, 26, 32, 0.06);
+  color: var(--booking-timezone-text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ai-assistant__record-cancel:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: rgb(220, 38, 38);
+}
+
+.ai-assistant__record-wave {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  display: block;
+}
+
+.ai-assistant__record-time {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--booking-timezone-text);
+  min-width: 36px;
+  text-align: right;
+}
+
+.ai-assistant__record-time::before {
+  /* A small red recording dot next to the counter. Pure CSS so it
+     doesn't need an extra DOM node or asset. */
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: rgb(220, 38, 38);
+  vertical-align: middle;
+  animation: apexianlab-rec-dot 1s ease-in-out infinite;
+}
+
+@keyframes apexianlab-rec-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+.ai-assistant__send {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--green-500);
+  cursor: pointer;
+}
+
+.ai-assistant__send:hover {
+  background: var(--green-600);
+}
+
+.ai-assistant__send:active {
+  transform: scale(0.96);
+}
+
+.ai-assistant__send:focus-visible {
+  outline: 2px solid var(--green-500);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .ai-assistant__messages {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .ai-assistant__chips {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .ai-assistant__composer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.ai-assistant__row--user {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.ai-assistant__bubble--user {
+  flex: 0 1 auto;
+  width: fit-content;
+  max-width: min(85%, 520px);
+  margin-left: auto;
+  background: rgba(24, 26, 32, 0.06);
+  border: none;
+}
+
+.ai-assistant__avatar--user {
+  display: none;
+}
+
+.ai-assistant__bubble-text p {
+  margin: 0 0 0.5em;
+}
+
+.ai-assistant__bubble-text p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-assistant__slot-list {
+  margin: 0.35em 0 0;
+  padding-left: 1.15em;
+}
+
+.ai-assistant__slot-list li {
+  margin-bottom: 0.35em;
+}
+
+.ai-assistant__inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ai-assistant__inline-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid rgba(24, 26, 32, 0.18);
+  border-radius: 10px;
+  background: var(--white-primary);
+  color: var(--gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.ai-assistant__inline-btn:hover {
+  border-color: color-mix(in srgb, var(--green-500) 40%, transparent);
+  color: var(--booking-timezone-text);
+}
+
+.ai-assistant__inline-btn--primary {
+  border-color: var(--green-500);
+  background: var(--green-500);
+  color: var(--white-primary);
+}
+
+.ai-assistant__inline-btn--primary:hover {
+  border-color: var(--green-600);
+  background: var(--green-600);
+  color: var(--white-primary);
+}
+
+.ai-assistant__loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  width: 48px;
+  height: 48px;
+  padding: 20px 6px;
+  box-sizing: border-box;
+}
+
+.ai-assistant__loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: apexianlab-dot-bounce 1.2s ease-in-out infinite;
+}
+
+.ai-assistant__loading-dot:nth-child(1) {
+  background-color: #00B84C;
+  animation-delay: 0s;
+}
+
+.ai-assistant__loading-dot:nth-child(2) {
+  background-color: rgba(24, 26, 32, 0.55);
+  animation-delay: 0.2s;
+}
+
+.ai-assistant__loading-dot:nth-child(3) {
+  background-color: rgba(24, 26, 32, 0.55);
+  animation-delay: 0.4s;
+}
+
+@keyframes apexianlab-dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+  30%            { transform: translateY(-4px); opacity: 1; }
+}
+
+.ai-assistant__chip--busy {
+  opacity: 0.65;
+  cursor: wait;
+  pointer-events: none;
+}
